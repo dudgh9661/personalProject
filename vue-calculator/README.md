@@ -1,5 +1,6 @@
 # vue-calculator
 
+<img src="public/sample.JPG"  width="600" height="600">
 ## Project setup
 ```
 npm install
