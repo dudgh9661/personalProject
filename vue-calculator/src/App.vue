@@ -61,12 +61,18 @@
 export default {
   data() {
     return {
-      input : "",
-      result : ""
+      input : "0",
+      result : "0",
+      needZero : true
     }
   },
   methods: {
     addOutput(num) {
+      if( this.needZero ) {
+        this.result = "";
+        this.input = "";
+        this.needZero = false;
+      }
        this.result = this.result + num;
        this.input = this.input + num;
     },
@@ -76,12 +82,20 @@ export default {
       this.input = answer;
     },
     del() {
-      this.input = this.input.substring(0, this.input.length - 1);
-      this.result = this.input;
+      if( this.input.length == 1 ) {
+        this.input = "0";
+        this.result = "0";
+        this.needZero = true;
+      }
+      else {
+        this.input = this.input.substring(0, this.input.length - 1);
+        this.result = this.input;
+      }
     },
     reset() {
-      this.input = "";
-      this.result = "";
+      this.needZero = true;
+      this.input = "0";
+      this.result = "0";
     },
     changeOperator() {
       var change = this.input;
@@ -112,6 +126,7 @@ export default {
 }
  
 #container > div {
+  
   border: 2px solid black;
 }
  
@@ -125,6 +140,7 @@ export default {
   background-color: black;
   text-align: right;
   padding-right: 8px;
+  border: 2px solid black;
 }
  
 .buttonWrap {
